@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<iostream>
 #include<string.h>
+#include<map>
 using namespace std;
 
 enum t_token {
@@ -14,7 +15,6 @@ enum t_token {
 
   LEFT_BRACES, OR, RIGHT_BRACES,
 
-
   CHARACTER, NUMERAL, STRINGVAL, ID,
 
   UNKNOWN
@@ -22,6 +22,24 @@ enum t_token {
 
 t_token searchKeyWord(char *name);
 int searchName(char *name);
+
+bool isNumeral(char *name) {
+  if(name[0] < '0' or name[0] > '9') return false;
+  for(int i = 0; name[i]; i++) {
+    if(i == 1 and (name[i] == 'x' or name[i] == 'X')) continue;
+    if(name[i] < '0' or name[i] > '9') return false;
+  }
+  return true;
+}
+bool isCharacter(char *name) {
+  if(name[0] == '\'' and name[2] == '\'' and name[3] == '\0') return true;
+  return false;
+}
+bool isStringVal(char *name) {
+  int n = strlen(name);
+  if(name[0] == '\"' and name[n-1] == '\"') return true;
+  return false;
+}
 
 t_token searchKeyWord(char *name) {
   char reserved_words[][10] = {
@@ -41,32 +59,33 @@ t_token searchKeyWord(char *name) {
     if(aux < 0) l = m+1;
     else r = m;
   }
-
   if(!strcmp(reserved_words[l], name)) return (t_token)l;
 
-  return (t_token)0;
-
+  return UNKNOWN;
 }
 
-int main() {
-  char reserved_words[][10] = {
-    "!", "!=", "&", "(", ")", "*", "+", "++", ",", "-", ".", "/",
-    ":", ";", "<", "<=", "=", ">", ">=", "[", "]",
+int token_counter;
+map<string, int> secondary_token;
 
-    "array", "boolean", "break", "char", "continue",
-    "do", "else", "false", "function", "if", "integer", "of", "string",
-    "struct", "true", "type", "var", "while",
-
-    "{",  "|", "}"};
-
-  char s[10];
-
-  while(1) {
-    scanf("%s", s);
-    cout << s << endl;
-    t_token t = searchKeyWord(s);
-    cout << "teste: " << (int)t << endl;
-    cout << "teste 2: " << ((t == INTEGER)? 1: 0) << endl;
+int searchName (char *name) {
+  if(!secondary_token.count(name)) {
+    secondary_token[name] = token_counter++;
   }
+  return secondary_token[name];
+}
+
+struct t_const {
+  char type;//0 - char, 1 - int, 2 - string
+  union{
+    char cVal;
+    int nVal;
+    char* sVal;
+  }v;
+};
+
+
+
+
+int main() {
   return 0;
 }
