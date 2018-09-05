@@ -4,6 +4,9 @@
 #include<map>
 using namespace std;
 
+const int MAX_CONSTS = 1e5;
+int nNumConsts = 0;
+
 enum t_token {
   NOT, NOT_EQUAL, AND, LEFT_PARENTHESIS, RIGHT_PARENTESIS, TIMES,
   PLUS, PLUS_PLUS, COMMA, MINUS, DOT, DIVIDE,
@@ -80,11 +83,35 @@ struct t_const {
     char cVal;
     int nVal;
     char* sVal;
-  }v;
+  }val;
 };
 
+t_const vConsts[MAX_CONSTS];
 
-
+int addCharConst(char c) {
+  vConsts[nNumConsts].type = 0;
+  vConsts[nNumConsts].val = c;
+  return nNumConsts++;
+}
+int addIntConst(int n) {
+  vConsts[nNumConsts].type = 1;
+  vConsts[nNumConsts].val = n;
+  return nNumConsts++;
+}
+int addStringConst(char* s) {
+  vConsts[nNumConsts].type = 2;
+  vConsts[nNumConsts].val = s;
+  return nNumConsts++;
+}
+char getCharConst(int n) {
+  return vConsts[n].val;
+}
+int getIntConst(int n) {
+  return vConsts[n].val;
+}
+char *getStringConst(int n) {
+  return vConsts[n].val;
+}
 
 int main() {
   return 0;
