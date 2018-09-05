@@ -6,12 +6,12 @@ using namespace std;
 enum t_token {
   NOT, NOT_EQUAL, AND, LEFT_PARENTHESIS, RIGHT_PARENTESIS, TIMES,
   PLUS, PLUS_PLUS, COMMA, MINUS, DOT, DIVIDE,
+  COLON, SEMI_COLON, LESS_THAN, LESS_OR_EQUAL,
+  EQUALS, GREATER_THAN, GREATER_OR_EQUAL, LEFT_SQUARE, RIGHT_SQUARE,
 
   ARRAY, BOOLEAN, BREAK, CHAR, CONTINUE, DO, ELSE, FALSE, FUNCITION,
   IF, INTEGER, OF, STRING, STRUCT, TRUE, TYPE, VAR, WHILE,
 
-  COLON, SEMI_COLON, LESS_THAN, LESS_OR_EQUAL,
-  EQUALS, GREATER_THAN, GREATER_OR_EQUAL, LEFT_SQUARE, RIGHT_SQUARE,
   LEFT_BRACES, OR, RIGHT_BRACES,
 
 
@@ -49,14 +49,24 @@ t_token searchKeyWord(char *name) {
 }
 
 int main() {
+  char reserved_words[][10] = {
+    "!", "!=", "&", "(", ")", "*", "+", "++", ",", "-", ".", "/",
+    ":", ";", "<", "<=", "=", ">", ">=", "[", "]",
+
+    "array", "boolean", "break", "char", "continue",
+    "do", "else", "false", "function", "if", "integer", "of", "string",
+    "struct", "true", "type", "var", "while",
+
+    "{",  "|", "}"};
+
   char s[10];
 
   while(1) {
     scanf("%s", s);
     cout << s << endl;
     t_token t = searchKeyWord(s);
-    //cout << "teste: " << (int)t << endl;
-    cout << "teste 2: " << ((t == BOOLEAN)? 1: 0) << endl;
+    cout << "teste: " << (int)t << endl;
+    cout << "teste 2: " << ((t == INTEGER)? 1: 0) << endl;
   }
   return 0;
 }
