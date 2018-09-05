@@ -24,6 +24,7 @@ enum t_token {
 };
 
 t_token searchKeyWord(char *name);
+t_token nextToken();
 int searchName(char *name);
 
 bool isNumeral(char *name) {
@@ -350,7 +351,6 @@ t_token nextToken()
     }
     return token;
 }
->>>>>>> 32a526b91b773655029b8cec09de231e03fce830
 
 int main() {
   return 0;
