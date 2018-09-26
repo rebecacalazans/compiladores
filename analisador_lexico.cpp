@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<iostream>
 #include<string.h>
 #include<string>
@@ -29,9 +30,9 @@ enum t_token {
   UNKNOWN
 };
 
-t_token searchKeyWord(const char *name);
+t_token searchKeyWord(char *name);
 t_token nextToken();
-int searchName(const char *name);
+int searchName(char *name);
 
 bool isNumeral(char *name) {
   if(name[0] < '0' or name[0] > '9') return false;
