@@ -5,30 +5,13 @@
 #include<string>
 #include<map>
 
-using namespace std;
+#include<analisador_lexico.h>
 
-const int MAX_CONSTS = 1e5;
-int nNumConsts = 0;
+using namespace std;
 
 char readChar() {
   return getchar();
 }
-
-enum t_token {
-  NOT, NOT_EQUAL, AND, LEFT_PARENTHESIS, RIGHT_PARENTHESIS, TIMES,
-  PLUS, PLUS_PLUS, COMMA, MINUS, DOT, DIVIDE,
-  COLON, SEMI_COLON, LESS_THAN, LESS_OR_EQUAL,
-  EQUALS, GREATER_THAN, GREATER_OR_EQUAL, LEFT_SQUARE, RIGHT_SQUARE,
-
-  ARRAY, BOOLEAN, BREAK, CHAR, CONTINUE, DO, ELSE, FALSE, FUNCITION,
-  IF, INTEGER, OF, STRING, STRUCT, TRUE, TYPE, VAR, WHILE,
-
-  LEFT_BRACES, OR, RIGHT_BRACES, EQUAL_EQUAL, MINUS_MINUS, END,
-
-  CHARACTER, NUMERAL, STRINGVAL, ID,
-
-  UNKNOWN
-};
 
 t_token searchKeyWord(char *name);
 t_token nextToken();
@@ -75,26 +58,12 @@ t_token searchKeyWord(const char *name) {
   return UNKNOWN;
 }
 
-int token_counter;
-map<string, int> secondary_token;
-
 int searchName (const char *name) {
   if(!secondary_token.count(name)) {
     secondary_token[name] = token_counter++;
   }
   return secondary_token[name];
 }
-
-struct t_const {
-  char type;//0 - char, 1 - int, 2 - string
-  union{
-    char cVal;
-    int nVal;
-    char* sVal;
-  }val;
-};
-
-t_const vConsts[MAX_CONSTS];
 
 int addCharConst(char c) {
   vConsts[nNumConsts].type = 0;
