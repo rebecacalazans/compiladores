@@ -1,4 +1,4 @@
-# Compiler
+# Simple Script Language Compiler
 
 ### Requirements
 * Linux
