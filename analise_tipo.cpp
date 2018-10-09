@@ -27,11 +27,11 @@ int end_block() {
   return --symbol_table_level;
 }
 
-pobject define(int name) {
+pobject define(int nName) {
   pobject obj = (pobject) malloc(sizeof(object));
 
-  obj->name = name;
-  obj->kind = KIND_UNDEFINED;
+  obj->nName = nName;
+  obj->eKind = NO_KIND_DEF_;
   obj->next = symbol_table[symbol_table_level];
   symbol_table[symbol_table_level] = obj;
 
@@ -70,21 +70,21 @@ int check_types(pobject t1, pobject t2)
 {
   /**/ if (t1 == t2) return 1;
   else if (t1 == pUniversal || t2 == pUniversal) return 1;
-  else if (t1->kind == KIND_UNIVERSAL || t2->kind == KIND_UNIVERSAL) return 1;
-  else if(t1->kind == KIND_ALIAS_TYPE && t2->kind != KIND_ALIAS_TYPE){
+  else if (t1->eKind == UNIVERSAL_ || t2->eKind == UNIVERSAL_) return 1;
+  else if(t1->eKind == ALIAS_TYPE_ && t2->eKind != ALIAS_TYPE_){
     return check_types(t1->Alias.pBaseType,t2);
   }
-  else if(t1->kind != KIND_ALIAS_TYPE && t2->kind == KIND_ALIAS_TYPE){
+  else if(t1->eKind != ALIAS_TYPE_ && t2->eKind == ALIAS_TYPE_){
     return check_types(t1,t2->Alias.pBaseType);
   }
-  else if (t1->kind == t2->kind) {
-    if (t1->kind == KIND_ALIAS_TYPE) {
+  else if (t1->eKind == t2->eKind) {
+    if (t1->eKind == ALIAS_TYPE_) {
       return check_types(t1->Alias.pBaseType, t2->Alias.pBaseType);
-    } else if (t1->kind == KIND_ARRAY_TYPE) {
+    } else if (t1->eKind == ARRAY_TYPE_) {
       if (t1->Array.nNumElems == t2->Array.nNumElems) {
         return check_types(t1->Array.pElemType, t2->Array.pElemType);
       }
-    } else if (t1->kind == KIND_STRUCT_TYPE) {
+    } else if (t1->eKind == STRUCT_TYPE_) {
       pobject f1 = t1->Struct.pFields;
       pobject f2 = t2->Struct.pFields;
       while (f1 != NULL && f2 != NULL) {
