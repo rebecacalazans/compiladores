@@ -15,3 +15,11 @@ $ make
 ```
 ## Usage
 
+
+## Disciplina de Compiladores
+
+#### Professor Guedes
+
+Rebeca Calazans
+
+Gabriel Delfino

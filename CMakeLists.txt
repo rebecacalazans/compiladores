@@ -5,4 +5,4 @@ project("my first compiler")
 
 add_definitions(-std=c++14)
 
-add_executable(compiler.out analisador_lexico.cpp)
+add_executable(compiler analisador_sintatico.cpp analisador_lexico.cpp tabela.cpp)

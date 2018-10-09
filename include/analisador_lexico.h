@@ -14,15 +14,15 @@ using namespace std;
 enum t_token {
   NOT, NOT_EQUAL, AND, LEFT_PARENTHESIS, RIGHT_PARENTHESIS, TIMES,
   PLUS, PLUS_PLUS, COMMA, MINUS, DOT, DIVIDE,
-  COLON, SEMI_COLON, LESS_THAN, LESS_OR_EQUAL,
-  EQUALS, GREATER_THAN, GREATER_OR_EQUAL, LEFT_SQUARE, RIGHT_SQUARE,
+  COLON, SEMICOLON, LESS, LESS_OR_EQUAL,
+  EQUAL, GREATER, GREATER_OR_EQUAL, LEFT_SQUARE, RIGHT_SQUARE,
 
-  ARRAY, BOOLEAN, BREAK, CHAR, CONTINUE, DO, ELSE, FALSE, FUNCITION,
-  IF, INTEGER, OF, STRING, STRUCT, TRUE, TYPE, VAR, WHILE,
+  ARRAY, BOOLEAN, BREAK, CHAR, CONTINUE, DO, ELSE, FUNCTION,
+  IF, INTEGER, OF, STRING, STRUCT, TYPE, VAR, WHILE,
 
   LEFT_BRACES, OR, RIGHT_BRACES, EQUAL_EQUAL, MINUS_MINUS, END,
 
-  CHARACTER, NUMERAL, STRINGVAL, ID,
+  CHARACTER, NUMERAL, STRINGVAL, ID, EOF_TOKEN,
 
   UNKNOWN
 };
@@ -38,10 +38,10 @@ struct t_const {
 
 //global variables
 const int MAX_CONSTS = 1e5;
-int nNumConsts = 0;
-int token_counter;
-map<string, int> secondary_token;
-t_const vConsts[MAX_CONSTS];
+extern int nNumConsts;
+extern int token_counter;
+extern map<string, int> secondary_token;
+extern t_const vConsts[MAX_CONSTS];
 
 //functions
 t_token nextToken();
@@ -62,7 +62,5 @@ int addStringConst(string s);
 char getCharConst(int n);
 int getIntConst(int n);
 char* getStringConst(int n);
-
-bool isspace(char c);
 
 t_token nextToken();

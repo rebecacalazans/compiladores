@@ -7,15 +7,18 @@
 
 #include<analisador_lexico.h>
 
+int nNumConsts;
+int token_counter;
+map<string, int> secondary_token;
+t_const vConsts[MAX_CONSTS];
+
 using namespace std;
 
 char readChar() {
-  return getchar();
+  char c = getchar();
+  printf("%c\n", c);
+  return c;
 }
-
-t_token searchKeyWord(char *name);
-t_token nextToken();
-int searchName(char *name);
 
 bool isNumeral(char *name) {
   if(name[0] < '0' or name[0] > '9') return false;
@@ -41,8 +44,8 @@ t_token searchKeyWord(const char *name) {
     ":", ";", "<", "<=", "=", ">", ">=", "[", "]",
 
     "array", "boolean", "break", "char", "continue",
-    "do", "else", "false", "function", "if", "integer", "of", "string",
-    "struct", "true", "type", "var", "while",
+    "do", "else", "function", "if", "integer", "of", "string",
+    "struct", "type", "var", "while",
 
     "{",  "|", "}"};
 
@@ -53,9 +56,11 @@ t_token searchKeyWord(const char *name) {
     if(aux < 0) l = m+1;
     else r = m;
   }
+  printf("%s\n", name);
+
   if(!strcmp(reserved_words[l], name)) return (t_token)l;
 
-  return UNKNOWN;
+  return ID;
 }
 
 int searchName (const char *name) {
@@ -96,9 +101,6 @@ char* getStringConst(int n) {
   return vConsts[n].val.sVal;
 }
 
-bool isspace(char c) {
-  return c == ' ';
-}
 
 t_token nextToken() {
   char nextChar = ' ';
@@ -108,7 +110,10 @@ t_token nextToken() {
   {
     nextChar = readChar();
   }
-  if (isalpha(nextChar))
+  if(nextChar == EOF) {
+    token = EOF_TOKEN;
+  }
+  else if (isalpha(nextChar))
   {
     string text = "";
 
@@ -171,7 +176,7 @@ t_token nextToken() {
 
       case ';':
         nextChar = readChar();
-        token = SEMI_COLON;
+        token = SEMICOLON;
       break;
 
       case ',':
@@ -180,6 +185,7 @@ t_token nextToken() {
       break;
 
       case '[':
+        printf("teste\n");
         nextChar = readChar();
         token = LEFT_SQUARE;
       break;
@@ -285,7 +291,7 @@ t_token nextToken() {
         }
         else
         {
-          token = EQUALS;
+          token = EQUAL;
         }
       break;
 
@@ -311,7 +317,7 @@ t_token nextToken() {
         }
         else
         {
-          token = LESS_THAN;
+          token = LESS;
         }
       break;
 
@@ -324,7 +330,7 @@ t_token nextToken() {
         }
         else
         {
-          token = GREATER_THAN;
+          token = GREATER;
         }
       break;
       default:
@@ -332,8 +338,4 @@ t_token nextToken() {
     }
   }
   return token;
-}
-
-int main() {
-  return 0;
 }
