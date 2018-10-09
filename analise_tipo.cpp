@@ -1,18 +1,16 @@
 #include<analise_tipo.h>
 
 
-object int_
- = { -1, NULL, SCALAR_TYPE_ };
+object int_ = { -1, NULL_TOKEN, SCALAR_TYPE_ };
 pobject pInt = &int_;
-object char_
- = { -1, NULL, SCALAR_TYPE_ };
+object char_ = { -1, NULL_TOKEN, SCALAR_TYPE_ };
 pobject pChar = &char_;
 object bool_
  = { -1, NULL, SCALAR_TYPE_ };
 pobject pBool = &bool_;
-object string_ = { -1, NULL, SCALAR_TYPE_ };
+object string_ = { -1, NULL_TOKEN, SCALAR_TYPE_ };
 pobject pString = &string_;
-object universal_= { -1, NULL, SCALAR_TYPE_ };
+object universal_= { -1, NULL_TOKEN, SCALAR_TYPE_ };
 pobject pUniversal = &universal_;
 
 pobject symbol_table[MAX_NEST_LEVEL];
@@ -20,8 +18,8 @@ pobject symbol_table_last[MAX_NEST_LEVEL];
 int current_level = -1;
 
 int new_block() {
-  symbol_table[++current_level] = NULL;
-  symbol_table_last[current_level] = NULL;
+  symbol_table[++current_level] = NULL_TOKEN;
+  symbol_table_last[current_level] = NULL_TOKEN;
   return current_level;
 }
 
