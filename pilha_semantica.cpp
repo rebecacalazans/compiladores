@@ -27,7 +27,7 @@ pobject define_symbol(int name){
 
   obj->nName = name;
   obj->eKind = NO_KIND_DEF_;
-  obj->next = symbol_table[current_level];
+  obj->pNext = symbol_table[current_level];
   symbol_table[current_level] = obj;
 }
 void semantic_stack_push(t_attrib attrib) {
