@@ -7,6 +7,8 @@
 
 #include<analisador_lexico.h>
 
+#define NULL 0
+
 int nNumConsts;
 int token_counter;
 map<string, int> secondary_token;
