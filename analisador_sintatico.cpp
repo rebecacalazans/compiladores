@@ -1,4 +1,5 @@
 #include <analisador_sintatico.h>
+#include <pilha_semantica.h>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ void parse() {
       for(int i = 0; i < rule[-pos][0]; i++) values.pop_back();
       int u = values.back();
       values.push_back(action[u][rule[-pos][1]]);
+
+      semantics(-pos);
     }
     else {
       //Error

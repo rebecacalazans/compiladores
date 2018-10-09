@@ -11,6 +11,7 @@ int nNumConsts;
 int token_counter;
 map<string, int> secondary_token;
 t_const vConsts[MAX_CONSTS];
+int tokenSecundario;
 
 using namespace std;
 
@@ -103,7 +104,6 @@ char nextChar = ' ';
 
 t_token nextToken() {
   t_token token;
-  int tokenSecundario;
   while (isspace(nextChar))
   {
     nextChar = readChar();
