@@ -951,21 +951,21 @@ void semantics(t_rule rule) {
       CHR_static.type = CHR;
       CHR_static.CHR.type = pChar;
       CHR_static.CHR.pos = tokenSecundario;
-      CHR_static.CHR.val = get_char_const(tokenSecundario);
+      CHR_static.CHR.val = getCharConst(tokenSecundario);
       semantic_stack_push(CHR_static);
     break;
     case RULE_STR_0:    //STR -> TOKEN_STRINGVAL
       STR_static.type = STR;
       STR_static.STR.type = pString;
       STR_static.STR.pos = tokenSecundario;
-      STR_static.STR.val = get_string_const(tokenSecundario);
+      STR_static.STR.val = getStringConst(tokenSecundario);
       semantic_stack_push(STR_static);
     break;
     case RULE_NUM_0:    //NUM -> TOKEN_NUMERAL
       NUM_static.type = NUM;
       NUM_static.NUM.type = pInt;
       NUM_static.NUM.pos = tokenSecundario;
-      NUM_static.NUM.val = get_numeral_const(tokenSecundario);
+      NUM_static.NUM.val = getIntConst(tokenSecundario);
       semantic_stack_push(NUM_static);
     break;
   }
