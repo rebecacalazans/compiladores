@@ -63,4 +63,4 @@ struct t_attrib {
   };
 };
 
-void semantics(t_rule rule);
+void semantics(int rule);
