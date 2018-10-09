@@ -44,6 +44,7 @@ extern int nNumConsts;
 extern int token_counter;
 extern map<string, int> secondary_token;
 extern t_const vConsts[MAX_CONSTS];
+extern int tokenSecundario;
 
 //functions
 t_token nextToken();
