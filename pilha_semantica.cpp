@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+
 bool IS_TYPE_KIND(t_kind k) {
   return ((k) == ARRAY_TYPE_ or
           (k) == STRUCT_TYPE_ or
@@ -20,7 +22,14 @@ int nFuncs = 0;
 pobject curFunction;
 int functionVarPos;
 
+pobject define_symbol(int name){
+  pobject obj = (pobject) malloc(sizeof(object));
 
+  obj->nName = name;
+  obj->eKind = NO_KIND_DEF_;
+  obj->next = symbol_table[current_level];
+  symbol_table[current_level] = obj;
+}
 void semantic_stack_push(t_attrib attrib) {
   semantic_stack.push_back(attrib);
 }
