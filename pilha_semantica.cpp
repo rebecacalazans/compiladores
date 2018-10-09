@@ -880,7 +880,6 @@ void semantics(t_rule rule) {
       f->Function.nVars = 0;
       curFunction = f;
 
-              f->Function.nParams,0);
 
       /*fgetpos(out,&functionVarPos);
         fprintf(out,"\n");*/
