@@ -699,7 +699,7 @@ void semantics(t_rule rule) {
       F_static.F.type = pChar;
       F_static.type = F;
       semantic_stack_push(F_static);
-      n = secondary_token;
+      n = tokenSecundario;
     break;
     case RULE_F_12:     //F -> STR
       STR_static = semantic_stack_top();
@@ -707,7 +707,7 @@ void semantics(t_rule rule) {
       F_static.F.type = pString;
       F_static.type = F;
       semantic_stack_push(F_static);
-      n = secondary_token;
+      n = tokenSecundario;
     break;
     case RULE_F_13:     //F -> NUM
       STR_static = semantic_stack_top();
@@ -715,7 +715,7 @@ void semantics(t_rule rule) {
       F_static.F.type = pInt;
       F_static.type = F;
       semantic_stack_push(F_static);
-      n = secondary_token;
+      n = tokenSecundario;
     break;
     case RULE_LE_1:     //LE -> E
       E_static = semantic_stack_top();
@@ -906,7 +906,7 @@ void semantics(t_rule rule) {
     break;
 
     case RULE_IDD_0:    //IDD -> TOKEN_ID
-      name = secondary_token;
+      name = tokenSecundario;
       IDD_static.ID.name = name;
       if((p = search_symbol_in_scope(name)) != NULL){
         //Error
@@ -918,7 +918,7 @@ void semantics(t_rule rule) {
     break;
 
     case RULE_IDU_0:    //IDU -> TOKEN_ID
-      name = secondary_token;
+      name = tokenSecundario;
       IDU_static.ID.name = name;
 
       if((p = search_symbol_globally(name)) == NULL){
@@ -931,7 +931,7 @@ void semantics(t_rule rule) {
     break;
 
     case RULE_ID_0:     //ID -> TOKEN_ID
-      name = secondary_token;
+      name = tokenSecundario;
       ID_static.ID.name = name;
       ID_static.ID.obj = NULL;
       semantic_stack_push(ID_static);
@@ -951,22 +951,22 @@ void semantics(t_rule rule) {
     case RULE_CHR_0:    //CHR -> TOKEN_CHARACTER
       CHR_static.type = CHR;
       CHR_static.CHR.type = pChar;
-      CHR_static.CHR.pos = secondary_token;
-      CHR_static.CHR.val = get_char_const(secondary_token);
+      CHR_static.CHR.pos = tokenSecundario;
+      CHR_static.CHR.val = get_char_const(tokenSecundario);
       semantic_stack_push(CHR_static);
     break;
     case RULE_STR_0:    //STR -> TOKEN_STRINGVAL
       STR_static.type = STR;
       STR_static.STR.type = pString;
-      STR_static.STR.pos = secondary_token;
-      STR_static.STR.val = get_string_const(secondary_token);
+      STR_static.STR.pos = tokenSecundario;
+      STR_static.STR.val = get_string_const(tokenSecundario);
       semantic_stack_push(STR_static);
     break;
     case RULE_NUM_0:    //NUM -> TOKEN_NUMERAL
       NUM_static.type = NUM;
       NUM_static.NUM.type = pInt;
-      NUM_static.NUM.pos = secondary_token;
-      NUM_static.NUM.val = get_numeral_const(secondary_token);
+      NUM_static.NUM.pos = tokenSecundario;
+      NUM_static.NUM.val = get_numeral_const(tokenSecundario);
       semantic_stack_push(NUM_static);
     break;
   }
