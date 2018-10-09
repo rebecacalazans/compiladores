@@ -16,15 +16,17 @@ pobject pUniversal = &universal_;
 pobject symbol_table[MAX_NEST_LEVEL];
 pobject symbol_table_last[MAX_NEST_LEVEL];
 int current_level = -1;
+int symbol_table_level = current_level; 
 
 int new_block() {
   symbol_table[++current_level] = NULL_TOKEN;
   symbol_table_last[current_level] = NULL_TOKEN;
-  return current_level;
+  symbol_table_level = current_level;
+  return symbol_table_level;
 }
 
 int end_block() {
-  return --symbol_table_level;
+  return --current_level;
 }
 
 pobject define(int nName) {
@@ -32,6 +34,7 @@ pobject define(int nName) {
 
   obj->nName = nName;
   obj->eKind = NO_KIND_DEF_;
+  symbol_table_level = current_level;
   obj->next = symbol_table[symbol_table_level];
   symbol_table[symbol_table_level] = obj;
 
@@ -39,6 +42,7 @@ pobject define(int nName) {
 }
 
 pobject search_symbol_in_scope(int name) {
+  symbol_table_level = current_level; 
   pobject obj = symbol_table[symbol_table_level];
 
   while (obj != NULL) {
@@ -52,7 +56,7 @@ pobject search_symbol_in_scope(int name) {
 
 pobject search_symbol_globally(int name) {
   pobject obj;
-
+  symbol_table_level = current_level;
   for (int i = symbol_table_level; i >= 0; i--) {
     obj = symbol_table[i];
 
