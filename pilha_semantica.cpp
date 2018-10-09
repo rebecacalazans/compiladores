@@ -780,7 +780,7 @@ void semantics(t_rule rule) {
       else{
         p = t->Struct.pFields;
         while(p!=NULL){
-          if(p->name == ID_static.ID.name){
+          if(p->nName == ID_static.ID.name){
             break;
           }
           p = p->pNext;
