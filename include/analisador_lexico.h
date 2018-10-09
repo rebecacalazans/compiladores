@@ -27,6 +27,8 @@ enum t_token {
   UNKNOWN
 };
 
+extern char nextChar;
+
 struct t_const {
   char type;//0 - char, 1 - int, 2 - string
   union{

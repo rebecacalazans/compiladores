@@ -16,7 +16,6 @@ using namespace std;
 
 char readChar() {
   char c = getchar();
-  printf("%c\n", c);
   return c;
 }
 
@@ -56,7 +55,6 @@ t_token searchKeyWord(const char *name) {
     if(aux < 0) l = m+1;
     else r = m;
   }
-  printf("%s\n", name);
 
   if(!strcmp(reserved_words[l], name)) return (t_token)l;
 
@@ -101,9 +99,9 @@ char* getStringConst(int n) {
   return vConsts[n].val.sVal;
 }
 
+char nextChar = ' ';
 
 t_token nextToken() {
-  char nextChar = ' ';
   t_token token;
   int tokenSecundario;
   while (isspace(nextChar))
@@ -185,7 +183,6 @@ t_token nextToken() {
       break;
 
       case '[':
-        printf("teste\n");
         nextChar = readChar();
         token = LEFT_SQUARE;
       break;

@@ -4,7 +4,7 @@ using namespace std;
 
 vector<int> values;
 
-void stack_print() {
+void print_stack() {
   printf("stack:");
   for(int u: values) printf(" %d", u);
   printf("\n");
@@ -20,7 +20,7 @@ void parse() {
 
   do {
     int pos = action[values.back()][token];
-    //stack_print();
+    //print_stack();
 
     if(pos > 0) {
       values.push_back(pos);
