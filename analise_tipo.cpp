@@ -35,7 +35,7 @@ pobject define(int nName) {
   obj->nName = nName;
   obj->eKind = NO_KIND_DEF_;
   symbol_table_level = current_level;
-  obj->next = symbol_table[symbol_table_level];
+  obj->pNext = symbol_table[symbol_table_level];
   symbol_table[symbol_table_level] = obj;
 
   return obj;
@@ -46,9 +46,9 @@ pobject search_symbol_in_scope(int name) {
   pobject obj = symbol_table[symbol_table_level];
 
   while (obj != NULL) {
-    if (obj->name == name)
+    if (obj->nName == name)
       return obj;
-    obj = obj->next;
+    obj = obj->pNext;
   }
 
   return obj;
@@ -61,9 +61,9 @@ pobject search_symbol_globally(int name) {
     obj = symbol_table[i];
 
     while (obj != NULL) {
-      if (obj->name == name)
+      if (obj->nName == name)
         return obj;
-      obj = obj->next;
+      obj = obj->pNext;
     }
   }
 
