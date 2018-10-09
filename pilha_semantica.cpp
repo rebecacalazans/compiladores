@@ -32,7 +32,7 @@ t_attrib semantic_stack_top() {
   return semantic_stack.back();
 }
 
-void semantics(t_rule rule) {
+void semantics(int rule) {
   static int name,n,l,l1,l2;
   static pobject p,t,f;
   static t_attrib IDD_static,IDU_static,ID_static,T_static,LI_static,LI0_static,LI1_static,TRU_static,FALS_static,STR_static,CHR_static,NUM_static,DC_static,DC0_static,DC1_static,LP_static,LP0_static,LP1_static,E_static,E0_static,E1_static,L_static,L0_static,L1_static,R_static,R0_static,R1_static,Y_static,Y0_static,Y1_static,F_static,F0_static,F1_static,LV_static,LV0_static,LV1_static,MC_static,LE_static,LE0_static,LE1_static,MT_static,ME_static,MW_static,NB_static;
