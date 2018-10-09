@@ -5,8 +5,12 @@
 #define NULL 0
 #define NULL_TOKEN 0
 
+
+
+
 enum t_kind{ NO_KIND_DEF_=-1, VAR_, PARAM_, FUNCTION_, FIELD_,
 ARRAY_TYPE_, STRUCT_TYPE_, ALIAS_TYPE_, SCALAR_TYPE_ , UNIVERSAL_};
+
 
 typedef struct object
 {
@@ -45,6 +49,7 @@ typedef struct object
 
 int new_block();
 int end_block();
+
 
 pobject define_symbol(int name);
 pobject search_symbol_in_scope(int name);
