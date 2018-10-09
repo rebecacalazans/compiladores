@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+
 #define NULL 0
 #define NULL_TOKEN 0
 
