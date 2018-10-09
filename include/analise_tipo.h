@@ -67,7 +67,7 @@ extern pobject pString;
 extern object universal_;
 extern pobject pUniversal;
 
-const int MAX_NEST_LEVEL = 5;
+const int MAX_NEST_LEVEL = 64;
 
 extern pobject symbol_table[MAX_NEST_LEVEL];
 extern pobject symbol_table_last[MAX_NEST_LEVEL];
