@@ -8,6 +8,7 @@
 #include<analisador_lexico.h>
 
 #define NULL 0
+#define NULL_TOKEN 0
 
 int nNumConsts;
 int token_counter;
