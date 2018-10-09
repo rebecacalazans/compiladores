@@ -1,5 +1,8 @@
 #pragma once
 
+#define NULL 0
+#define NULL_TOKEN 0
+
 enum t_kind{ NO_KIND_DEF_=-1, VAR_, PARAM_, FUNCTION_, FIELD_,
 ARRAY_TYPE_, STRUCT_TYPE_, ALIAS_TYPE_, SCALAR_TYPE_ , UNIVERSAL_};
 
